@@ -155,8 +155,11 @@ function (_React$Component) {
       num1: "",
       num2: "",
       result: 0
-    };
-    _this.setNum1 = _this.setNum1.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    }; //current states
+
+    _this.setNum1 = _this.setNum1.bind(_assertThisInitialized(_assertThisInitialized(_this))); //in order to use the instance methods in render method,
+    //we have to bind and assign them to instance variables;
+
     _this.setNum2 = _this.setNum2.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.add = _this.add.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     _this.subtract = _this.subtract.bind(_assertThisInitialized(_assertThisInitialized(_this)));
@@ -177,6 +180,7 @@ function (_React$Component) {
   }, {
     key: "setNum2",
     value: function setNum2(e) {
+      console.log(e.location);
       var num2 = e.target.value ? parseInt(e.target.value) : "";
       this.setState({
         num2: num2
@@ -231,16 +235,15 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this$state = this.state,
-          num1 = _this$state.num1,
-          num2 = _this$state.num2,
-          result = _this$state.result;
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Welcome to Nero's Calculator"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, result), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      // const { num1, num2, result } = this.state; //short cut
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Welcome to Nero's Calculator"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, this.state.result), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         onChange: this.setNum1,
-        value: num1
+        value: this.state.num1
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         onChange: this.setNum2,
-        value: num2
+        value: this.state.num2
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.clear
       }, "Clear"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -258,7 +261,7 @@ function (_React$Component) {
   return Calculator;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (Calculator);
+/* harmony default export */ __webpack_exports__["default"] = (Calculator); // onChange={(y) => this.setNum1(e)}
 
 /***/ }),
 

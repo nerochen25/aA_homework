@@ -3,8 +3,10 @@ import React from 'react';
 class Calculator extends React.Component{
   constructor(){
     super();
-    this.state = { num1: "", num2: "", result: 0 };
+    this.state = { num1: "", num2: "", result: 0 }; //current states
     this.setNum1 = this.setNum1.bind(this);
+    //in order to use the instance methods in render method,
+    //we have to bind and assign them to instance variables;
     this.setNum2 = this.setNum2.bind(this);
     this.add = this.add.bind(this);
     this.subtract = this.subtract.bind(this);
@@ -19,6 +21,7 @@ class Calculator extends React.Component{
   }
 
   setNum2(e){
+    console.log(e.location)
     const num2 = e.target.value ? parseInt(e.target.value) : "";
     this.setState({ num2 });
   }
@@ -53,14 +56,16 @@ class Calculator extends React.Component{
   }
 
   render(){
-    const { num1, num2, result } = this.state;
-    return (
-      <div>
-        <h1>Welcome to Nero's Calculator</h1>
-        <h1>{result}</h1>
+    // const { num1, num2, result } = this.state; //short cut
 
-        <input onChange={this.setNum1} value={num1}/>
-        <input onChange={this.setNum2} value={num2}/>
+    return (
+      <div className='container'>
+
+        <h1>Welcome to Nero's Calculator</h1>
+        <h1>{this.state.result}</h1>
+
+        <input onChange={this.setNum1} value={this.state.num1}/>
+        <input onChange={this.setNum2} value={this.state.num2}/>
         <button onClick={this.clear}>Clear</button>
         <br />
         <button onClick={this.add}>+</button>
@@ -73,3 +78,7 @@ class Calculator extends React.Component{
 }
 
 export default Calculator;
+
+
+
+// onChange={(y) => this.setNum1(e)}
